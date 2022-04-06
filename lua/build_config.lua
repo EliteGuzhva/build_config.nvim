@@ -7,7 +7,6 @@ M.setup = function (opts)
     end
 
     if not vim.loop.fs_stat(path_to_config) then
-        print("Couldn't find `" .. path_to_config .. "`")
         return nil
     end
 
