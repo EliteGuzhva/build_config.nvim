@@ -105,7 +105,6 @@ M.link_compile_commands = function ()
         config.build_dir .. "/compile_commands.json",
         "./"
     }
-    util.concat(command, config.build_options)
 
     util.execute_command(".", command)
 end
