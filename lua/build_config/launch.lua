@@ -35,7 +35,7 @@ M.launch = function ()
     local config = M.parse_config()
     local command = M.compose_command(config)
 
-    util.execute_command(config.cwd, command)
+    util.execute_command(config.cwd, command, 2)
 end
 
 return M

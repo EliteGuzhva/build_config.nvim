@@ -71,13 +71,10 @@ M.install = function ()
 
     local command = {
         config.exe,
-        "--install-prefix",
-        config.install_prefix,
         "--install",
         config.build_dir,
-        "--target",
-        config.target,
-        "--"
+        "--prefix",
+        config.install_prefix
     }
     util.concat(command, config.build_options)
 
@@ -94,6 +91,19 @@ M.clean = function ()
         "--target",
         "clean",
         "--"
+    }
+    util.concat(command, config.build_options)
+
+    util.execute_command(".", command)
+end
+
+M.link_compile_commands = function ()
+    local config = M.parse_config()
+
+    local command = {
+        "ln -s",
+        config.build_dir .. "/compile_commands.json",
+        "./"
     }
     util.concat(command, config.build_options)
 
