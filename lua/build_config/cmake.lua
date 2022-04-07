@@ -5,9 +5,9 @@ local M = {}
 M.parse_config = function ()
     local config = {}
 
-    config.build_dir = util.value_or(BUILD_CONFIG["build_dir"], "build")
-
-    local opts = BUILD_CONFIG["cmake"]
+    vim.g.bc_config = util.parse_config(vim.g.bc_config_path)
+    config.build_dir = util.value_or(vim.g.bc_config["build_dir"], "build")
+    local opts = vim.g.bc_config["cmake"]
 
     if opts == nil then
         return nil
@@ -47,7 +47,7 @@ M.configure = function ()
 
     util.concat(command, config.generate_options)
 
-    util.execute_command(".", command)
+    util.execute_command(command)
 end
 
 M.build = function ()
@@ -63,7 +63,7 @@ M.build = function ()
     }
     util.concat(command, config.build_options)
 
-    util.execute_command(".", command)
+    util.execute_command(command)
 end
 
 M.install = function ()
@@ -78,7 +78,7 @@ M.install = function ()
     }
     util.concat(command, config.build_options)
 
-    util.execute_command(".", command)
+    util.execute_command(command)
 end
 
 M.clean = function ()
@@ -94,7 +94,7 @@ M.clean = function ()
     }
     util.concat(command, config.build_options)
 
-    util.execute_command(".", command)
+    util.execute_command(command)
 end
 
 M.link_compile_commands = function ()
@@ -106,7 +106,7 @@ M.link_compile_commands = function ()
         "./"
     }
 
-    util.execute_command(".", command)
+    util.execute_command(command)
 end
 
 return M

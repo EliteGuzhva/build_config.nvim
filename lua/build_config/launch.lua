@@ -4,7 +4,9 @@ local M = {}
 
 M.parse_config = function ()
     local config = {}
-    local opts = BUILD_CONFIG["launch"]
+
+    vim.g.bc_config = util.parse_config(vim.g.bc_config_path)
+    local opts = vim.g.bc_config["launch"]
 
     if opts == nil then
         return nil
@@ -35,7 +37,7 @@ M.launch = function ()
     local config = M.parse_config()
     local command = M.compose_command(config)
 
-    util.execute_command(config.cwd, command, 2)
+    util.execute_command(command, config.cwd, 2)
 end
 
 return M

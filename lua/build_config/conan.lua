@@ -5,9 +5,9 @@ local M = {}
 M.parse_config = function ()
     local config = {}
 
-    local build_dir = util.value_or(BUILD_CONFIG["build_dir"], "build")
-
-    local opts = BUILD_CONFIG["conan"]
+    vim.g.bc_config = util.parse_config(vim.g.bc_config_path)
+    local build_dir = util.value_or(vim.g.bc_config["build_dir"], "build")
+    local opts = vim.g.bc_config["conan"]
 
     if opts == nil then
         return nil
@@ -33,7 +33,7 @@ M.install = function ()
     }
     util.concat(command, config.args)
 
-    util.execute_command(".", command)
+    util.execute_command(command)
 end
 
 return M
