@@ -2,6 +2,8 @@ local util = require("build_config.util")
 
 local M = {}
 
+M.default_exe = "python"
+
 M.parse_config = function ()
     local config = {}
 
@@ -10,15 +12,13 @@ M.parse_config = function ()
         return nil
     end
 
-    local section = "python"
-    local opts = vim.g.bc_config[section]
+    local opts = vim.g.bc_config["python"]
 
     if opts == nil then
-        util.log_error("Provide `" .. section .. "` section")
         return nil
     end
 
-    config.exe = util.value_or(opts["exe"], "python")
+    config.exe = util.value_or(opts["exe"], M.default_exe)
     config.venv = util.value_or(opts["venv"], nil)
     config.cwd = util.value_or(opts["cwd"], ".")
     config.script = util.value_or(opts["script"], nil)
@@ -29,9 +29,6 @@ end
 
 M.pip_install_requirements = function ()
     local config = M.parse_config()
-    if config == nil then
-        return
-    end
 
     local req_file = "requirements.txt"
     if not vim.loop.fs_stat(req_file) then
@@ -39,16 +36,23 @@ M.pip_install_requirements = function ()
         return
     end
 
-    if config.venv ~= nil then
+    local exe = M.default_exe
+    local venv = nil
+    if config ~= nil then
+        exe = config["exe"]
+        venv = config["venv"]
+    end
+
+    if venv ~= nil then
         local command = {
             "source",
-            config.venv .. "/bin/activate"
+            venv .. "/bin/activate"
         }
         util.execute_command(command)
     end
 
     local command = {
-        config.exe,
+        exe,
         "-m",
         "pip",
         "install",

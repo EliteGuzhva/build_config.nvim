@@ -30,6 +30,11 @@ vim.cmd("command! BCFlutterClean lua require('build_config.flutter').clean()")
 vim.cmd("command! BCFlutterPubGet lua require('build_config.flutter').pub_get()")
 vim.cmd("command! BCFlutterPubUpgrade lua require('build_config.flutter').pub_upgrade()")
 
+vim.cmd("command! BCCargoRun lua require('build_config.cargo').run()")
+vim.cmd("command! BCCargoBuild lua require('build_config.cargo').build()")
+vim.cmd("command! BCCargoInstall lua require('build_config.cargo').install()")
+vim.cmd("command! BCCargoClean lua require('build_config.cargo').clean()")
+
 vim.cmd("command! BCBuildDevcontainer lua require('build_config.devcontainer').build_container()")
 vim.cmd("command! BCLaunchDevcontainer lua require('build_config.devcontainer').launch_container()")
 vim.cmd("command! BCStopDevcontainer lua require('build_config.devcontainer').stop_container()")

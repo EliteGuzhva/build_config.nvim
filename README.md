@@ -76,6 +76,16 @@ Create `.build_config.json` in the root of your project.
             "--verbose"
         ],
     },
+    // "cargo"
+    // Cargo (rust) project configuration.
+    "cargo": {
+        "exe": "cargo",              // cargo executable
+        "bin": "src/main.rs",        // binary to run
+        "install_dir": "./install",  // installation directory
+        "args": [                    // additional cargo arguments
+            "--verbose"
+        ],
+    },
     // "keymaps"
     // Configure keymaps for build_config.nvim commands.
     // Provided keymaps are not default (only for demonstration purpose).
@@ -145,6 +155,11 @@ BCFlutterTest               " flutter.test
 BCFlutterClean              " flutter.clean
 BCFlutterPubGet             " flutter.pub_get
 BCFlutterPubUpgrade         " flutter.pub_upgrade
+
+BCCargoRun                  " cargo.run
+BCCargoBuild                " cargo.build
+BCCargoInstall              " cargo.install
+BCCargoClean                " cargo.clean
 
 BCBuildDevcontainer         " devcontainer.build_container
 BCLaunchDevcontainer        " devcontainer.launch_container
