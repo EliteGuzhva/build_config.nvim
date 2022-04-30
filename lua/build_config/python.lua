@@ -18,7 +18,7 @@ M.parse_config = function ()
         return nil
     end
 
-    config.python_exe = util.value_or(opts["python_exe"], "python")
+    config.exe = util.value_or(opts["exe"], "python")
     config.venv = util.value_or(opts["venv"], nil)
     config.cwd = util.value_or(opts["cwd"], ".")
     config.script = util.value_or(opts["script"], nil)
@@ -48,7 +48,7 @@ M.pip_install_requirements = function ()
     end
 
     local command = {
-        config.python_exe,
+        config.exe,
         "-m",
         "pip",
         "install",
@@ -66,7 +66,7 @@ M.compose_command = function (config)
     end
 
     local command = {
-        config.python_exe,
+        config.exe,
         config.script
     }
 
