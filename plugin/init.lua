@@ -21,6 +21,15 @@ vim.cmd([[
 vim.cmd("command! BCPipInstallRequirements lua require('build_config.python').pip_install_requirements()")
 vim.cmd("command! BCPythonRun lua require('build_config.python').run()")
 
+vim.cmd("command! BCFlutterDoctor lua require('build_config.flutter').doctor()")
+vim.cmd("command! BCFlutterDevices lua require('build_config.flutter').devices()")
+vim.cmd("command! BCFlutterRun lua require('build_config.flutter').run()")
+vim.cmd("command! BCFlutterBuild lua require('build_config.flutter').build()")
+vim.cmd("command! BCFlutterTest lua require('build_config.flutter').test()")
+vim.cmd("command! BCFlutterClean lua require('build_config.flutter').clean()")
+vim.cmd("command! BCFlutterPubGet lua require('build_config.flutter').pub_get()")
+vim.cmd("command! BCFlutterPubUpgrade lua require('build_config.flutter').pub_upgrade()")
+
 vim.cmd("command! BCBuildDevcontainer lua require('build_config.devcontainer').build_container()")
 vim.cmd("command! BCLaunchDevcontainer lua require('build_config.devcontainer').launch_container()")
 vim.cmd("command! BCStopDevcontainer lua require('build_config.devcontainer').stop_container()")

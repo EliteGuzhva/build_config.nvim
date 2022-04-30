@@ -64,6 +64,18 @@ Create `.build_config.json` in the root of your project.
             "--keep-source"
         ],
     },
+    // "flutter"
+    // Flutter project configuration.
+    "flutter": {
+        "exe": "flutter",           // flutter executable
+        "device": "macos",          // target device id
+        "build_type": "release",    // `flutter run` build type
+        "target": "lib/main.dart",  // target file to run
+        "build_variant": "apk",     // subcommand for `flutter build`
+        "args": [                   // additional flutter arguments
+            "--verbose"
+        ],
+    },
     // "keymaps"
     // Configure keymaps for build_config.nvim commands.
     // Provided keymaps are not default (only for demonstration purpose).
@@ -85,6 +97,16 @@ Create `.build_config.json` in the root of your project.
         "conan": {
             "install": "<leader>cp",
             "create": "<leader>co"
+        },
+        "flutter": {
+            "doctor": "<leader>fh",
+            "devices": "<leader>fd",
+            "run": "<leader>fr",
+            "build": "<leader>fb",
+            "test": "<leader>ft",
+            "clean": "<leader>fc",
+            "pub_get": "<leader>fg",
+            "pub_upgrade": "<leader>fu"
         },
         // Devcontainer options are configured in .devcontainer/devcontainer.json.
         // Syntax is the same as in VSCode version (but not all options are available yet).
@@ -114,6 +136,15 @@ BCCMakeLinkCompileCommands  " cmake.link_compile_commands
 
 BCConanInstall              " conan.install
 BCConanCreate               " conan.create
+
+BCFlutterDoctor             " flutter.doctor
+BCFlutterDevices            " flutter.devices
+BCFlutterRun                " flutter.run
+BCFlutterBuild              " flutter.build
+BCFlutterTest               " flutter.test
+BCFlutterClean              " flutter.clean
+BCFlutterPubGet             " flutter.pub_get
+BCFlutterPubUpgrade         " flutter.pub_upgrade
 
 BCBuildDevcontainer         " devcontainer.build_container
 BCLaunchDevcontainer        " devcontainer.launch_container

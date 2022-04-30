@@ -61,4 +61,13 @@ M.value_or = function(optional, default_value)
 	end
 end
 
+M.add_option = function(command, option, value)
+	if value ~= nil then
+		M.concat(command, {
+            option,
+            value
+        })
+    end
+end
+
 return M
