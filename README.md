@@ -118,6 +118,12 @@ Create `.build_config.json` in the root of your project.
             "pub_get": "<leader>fg",
             "pub_upgrade": "<leader>fu"
         },
+        "cargo": {
+            "run": "<leader>rr",
+            "build": "<leader>rb",
+            "install": "<leader>ri",
+            "clean": "<leader>rc"
+        },
         // Devcontainer options are configured in .devcontainer/devcontainer.json.
         // Syntax is the same as in VSCode version (but not all options are available yet).
         // Devcontainer automatically stops on quitting Nvim.
