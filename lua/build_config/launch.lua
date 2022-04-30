@@ -18,7 +18,7 @@ M.parse_config = function ()
     end
 
     config.cwd = util.value_or(opts["cwd"], ".")
-    config.cmd = util.value_or(opts["cmd"], "")
+    config.exe = util.value_or(opts["exe"], nil)
     config.args = util.value_or(opts["args"], {})
     config.before_script = util.value_or(opts["before_script"], nil)
 
@@ -26,13 +26,18 @@ M.parse_config = function ()
 end
 
 M.compose_command = function (config)
+    if config.exe == nil then
+        util.log_error("Provide `launch.exe`")
+        return nil
+    end
+
     local command = {}
 
     if config.before_script ~= nil then
         table.insert(command, config.before_script)
     end
 
-    table.insert(command, config.cmd)
+    table.insert(command, "./" .. config.exe)
     util.concat(command, config.args)
 
     return command
@@ -45,6 +50,9 @@ M.launch = function ()
     end
 
     local command = M.compose_command(config)
+    if command == nil then
+        return
+    end
 
     util.execute_command(command, config.cwd, 2)
 end

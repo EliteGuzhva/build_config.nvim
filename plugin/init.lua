@@ -18,6 +18,9 @@ vim.cmd([[
     command! BCCMakeBuildLaunch call BuildRun()
 ]])
 
+vim.cmd("command! BCPipInstallRequirements lua require('build_config.python').pip_install_requirements()")
+vim.cmd("command! BCPythonRun lua require('build_config.python').run()")
+
 vim.cmd("command! BCBuildDevcontainer lua require('build_config.devcontainer').build_container()")
 vim.cmd("command! BCLaunchDevcontainer lua require('build_config.devcontainer').launch_container()")
 vim.cmd("command! BCStopDevcontainer lua require('build_config.devcontainer').stop_container()")

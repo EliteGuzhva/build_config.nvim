@@ -46,7 +46,7 @@ M.install = function ()
     end
 
     util.concat(command, config.args)
-    util.concat(command, {config.path})
+    table.insert(command, config.path)
 
     util.execute_command(command)
 end
