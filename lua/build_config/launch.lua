@@ -13,7 +13,7 @@ M.parse_config = function ()
     local opts = vim.g.bc_config["launch"]
 
     if opts == nil then
-        vim.notify("Provide `launch` section")
+        util.log_error("Provide `launch` section")
         return nil
     end
 

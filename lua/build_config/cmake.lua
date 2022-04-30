@@ -14,7 +14,7 @@ M.parse_config = function ()
     local opts = vim.g.bc_config["cmake"]
 
     if opts == nil then
-        vim.notify("Provide `cmake` section")
+        util.log_error("Provide `cmake` section")
         return nil
     end
 

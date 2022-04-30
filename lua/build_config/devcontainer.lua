@@ -95,11 +95,11 @@ M.launch_container = function ()
         augroup END
     ]])
 
-    vim.notify("Launched devcontainer " .. vim.g.dc_container_name)
+    util.log_info("Launched devcontainer " .. vim.g.dc_container_name)
 end
 
 M.stop_container = function ()
-    vim.notify("Stopping devcontainer " .. vim.g.dc_container_name .. "...")
+    util.log_info("Stopping devcontainer " .. vim.g.dc_container_name .. "...")
 
     local stop_cmd = "silent !docker stop " .. vim.g.dc_container_name
     vim.cmd(stop_cmd)
@@ -113,7 +113,7 @@ M.stop_container = function ()
         autocmd! Devcontainer
     ]])
 
-    vim.notify("Stopped devcontainer " .. vim.g.dc_container_name)
+    util.log_info("Stopped devcontainer " .. vim.g.dc_container_name)
 end
 
 return M

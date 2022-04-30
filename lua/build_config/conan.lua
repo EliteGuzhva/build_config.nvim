@@ -14,7 +14,7 @@ M.parse_config = function ()
     local opts = vim.g.bc_config["conan"]
 
     if opts == nil then
-        vim.notify("Provide `conan` section")
+        util.log_error("Provide `conan` section")
         return nil
     end
 
@@ -58,7 +58,7 @@ M.create = function ()
     end
 
     if config.reference == nil then
-        vim.notify("Provide `conan.reference`")
+        util.log_error("Provide `conan.reference`")
         return
     end
 
