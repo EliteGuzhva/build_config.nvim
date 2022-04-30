@@ -6,11 +6,11 @@ M.parse_config = function ()
     local config = {}
 
     vim.g.dc_config = util.parse_config(".devcontainer/devcontainer.json")
-    local opts = vim.g.dc_config
-
-    if opts == nil then
+    if vim.g.dc_config == nil then
         return nil
     end
+
+    local opts = vim.g.dc_config
 
     if opts["image"] ~= nil then
         config.image = opts["image"]
@@ -38,6 +38,9 @@ end
 
 M.build_container = function ()
     local config = M.parse_config()
+    if config == nil then
+        return
+    end
 
     local command = {
         "docker",
@@ -54,6 +57,9 @@ end
 
 M.launch_container = function ()
     local config = M.parse_config()
+    if config == nil then
+        return
+    end
 
     local command = {
         "docker",

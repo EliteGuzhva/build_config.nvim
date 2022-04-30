@@ -6,10 +6,15 @@ M.parse_config = function ()
     local config = {}
 
     vim.g.bc_config = util.parse_config(vim.g.bc_config_path)
+    if vim.g.bc_config == nil then
+        return nil
+    end
+
     config.build_dir = util.value_or(vim.g.bc_config["build_dir"], "build")
     local opts = vim.g.bc_config["cmake"]
 
     if opts == nil then
+        vim.notify("Provide `cmake` section")
         return nil
     end
 
@@ -27,6 +32,9 @@ end
 
 M.configure = function ()
     local config = M.parse_config()
+    if config == nil then
+        return
+    end
 
     local command = {
         config.exe,
@@ -52,6 +60,9 @@ end
 
 M.build = function ()
     local config = M.parse_config()
+    if config == nil then
+        return
+    end
 
     local command = {
         config.exe,
@@ -68,6 +79,9 @@ end
 
 M.install = function ()
     local config = M.parse_config()
+    if config == nil then
+        return
+    end
 
     local command = {
         config.exe,
@@ -83,6 +97,9 @@ end
 
 M.clean = function ()
     local config = M.parse_config()
+    if config == nil then
+        return
+    end
 
     local command = {
         config.exe,
@@ -99,6 +116,9 @@ end
 
 M.link_compile_commands = function ()
     local config = M.parse_config()
+    if config == nil then
+        return
+    end
 
     local command = {
         "ln -s",

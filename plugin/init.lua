@@ -1,6 +1,7 @@
 vim.cmd("command! BCLaunch lua require('build_config.launch').launch()")
 
 vim.cmd("command! BCConanInstall lua require('build_config.conan').install()")
+vim.cmd("command! BCConanCreate lua require('build_config.conan').create()")
 
 vim.cmd("command! BCCMakeConfigure lua require('build_config.cmake').configure()")
 vim.cmd("command! BCCMakeBuild lua require('build_config.cmake').build()")

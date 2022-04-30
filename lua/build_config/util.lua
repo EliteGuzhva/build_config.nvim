@@ -5,7 +5,8 @@ M.parse_config = function(config_path)
 		local json = vim.fn.readfile(config_path)
 		return vim.fn.json_decode(json)
 	else
-		return {}
+        vim.notify("Couldn't find json config")
+		return nil
 	end
 end
 
