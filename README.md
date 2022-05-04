@@ -10,6 +10,10 @@ Create `.build_config.json` in the root of your project.
 
 ```json
 {
+    // Common settings
+    {
+        "build_dir": "build"  // build directory
+    },
     // "launch"
     // Here you can configure how to run executables.
     // This example creates a command:
