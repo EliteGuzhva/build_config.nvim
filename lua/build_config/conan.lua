@@ -20,7 +20,7 @@ M.parse_config = function ()
 
     config.exe = util.value_or(opts["exe"], "conan")
     config.install_folder = util.value_or(opts["install_folder"], build_dir)
-    config.install_folder = util.value_or(opts["output_folder"], build_dir)
+    config.output_folder = util.value_or(opts["output_folder"], build_dir)
     config.build = util.value_or(opts["build"], nil)
     config.path = util.value_or(opts["path"], ".")
     config.reference = util.value_or(opts["reference"], nil)
