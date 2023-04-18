@@ -11,14 +11,20 @@ M.parse_config = function ()
     end
 
     local build_dir = util.value_or(vim.g.bc_config["build_dir"], "build")
-    local opts = vim.g.bc_config["conan"]
 
+    local build_type = "Release"
+    if vim.g.bc_config["cmake"] ~= nil then
+        build_type = util.value_or(vim.g.bc_config["cmake"]["build_type"], build_type)
+    end
+
+    local opts = vim.g.bc_config["conan"]
     if opts == nil then
         util.log_error("Provide `conan` section")
         return nil
     end
 
     config.exe = util.value_or(opts["exe"], "conan")
+    config.build_type = util.value_or(opts["build_type"], build_type)
     config.install_folder = util.value_or(opts["install_folder"], build_dir)
     config.output_folder = util.value_or(opts["output_folder"], build_dir)
     config.build = util.value_or(opts["build"], nil)
@@ -46,6 +52,10 @@ M.install = function ()
 
     if config.build ~= nil then
         util.concat(command, {"-b", config.build})
+    end
+
+    if config.build_type ~= nil then
+        util.concat(command, {"-s", "build_type=" .. config.build_type})
     end
 
     util.concat(command, config.args)
