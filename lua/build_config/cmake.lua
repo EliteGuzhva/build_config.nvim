@@ -26,6 +26,7 @@ M.parse_config = function ()
     config.build_options = util.value_or(opts["build_options"], {})
     config.install_prefix = util.value_or(opts["install_prefix"], "./install")
     config.target = util.value_or(opts["target"], "all")
+    config.preset = util.value_or(opts["preset"], nil)
 
     return config
 end
@@ -42,6 +43,10 @@ M.configure = function ()
         "-B",
         config.build_dir
     }
+
+    if config.preset ~= nil then
+        util.concat(command, { "--preset", config.preset })
+    end
 
     if config.generator ~= nil then
         util.concat(command, { "-G", config.generator })

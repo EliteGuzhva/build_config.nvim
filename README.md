@@ -52,13 +52,15 @@ Create `.build_config.json` in the root of your project.
             "--j8"
         ],
         "install_prefix": "./install",    // installation folder
-        "target": "all"                   // cmake target
+        "target": "all",                  // cmake target
+        "preset": "release"               // cmake preset
     },
     // "conan"
     // Conan package manager configuration.
     "conan": {
         "exe": "conan",                    // conan executable
-        "install_folder": "build",         // installation folder (where to put all generated files)
+        "install_folder": "build",         // installation folder (where to put all build files)
+        "output_folder": "build",          // output folder (where to put all generator files)
         "build": "missing",                // --build option
         "path": ".",                       // path to conanfile[.py/.txt]
         "reference": "my-package/1.2.3@",  // package reference (when calling `conan.create`)
