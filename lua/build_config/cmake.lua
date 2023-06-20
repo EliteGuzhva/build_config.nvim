@@ -39,26 +39,25 @@ M.configure = function ()
 
     local command = {
         config.exe,
-        ".",
-        "-B",
-        config.build_dir
+        "."
     }
 
     if config.preset ~= nil then
         util.concat(command, { "--preset", config.preset })
+    else
+        if config.generator ~= nil then
+            util.concat(command, { "-G", config.generator })
+        end
+
+        if config.export_compile_commands == true then
+            table.insert(command, "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON")
+        end
+
+        table.insert(command, "-DCMAKE_BUILD_TYPE=" .. config.build_type)
+
+        util.concat(command, config.generate_options)
+        util.concat(command, { "-B", config.build_dir })
     end
-
-    if config.generator ~= nil then
-        util.concat(command, { "-G", config.generator })
-    end
-
-    if config.export_compile_commands == true then
-        table.insert(command, "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON")
-    end
-
-    table.insert(command, "-DCMAKE_BUILD_TYPE=" .. config.build_type)
-
-    util.concat(command, config.generate_options)
 
     util.execute_command(command)
 end
