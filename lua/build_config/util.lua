@@ -1,6 +1,8 @@
 local M = {}
 
 M.log_title = "build_config.nvim"
+M.main_term_id = 200
+M.secondary_term_id = 201
 
 M.log = function(text, level)
     vim.notify(text, level, { title = M.log_title })
@@ -38,7 +40,7 @@ M.execute_command = function(command, cwd, term_id, open)
 	local direction = "horizontal"
 	local go_back = false
 
-	term_id = term_id or 1
+	term_id = term_id or M.main_term_id
     open = open == nil or open
 
 	command = table.concat(command, " ")

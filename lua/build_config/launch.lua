@@ -54,7 +54,7 @@ M.launch = function ()
         return
     end
 
-    util.execute_command(command, config.cwd, 2)
+    util.execute_command(command, config.cwd, util.secondary_term_id)
 end
 
 return M

@@ -85,7 +85,7 @@ M.run = function ()
         return
     end
 
-    local term_id = 2
+    local term_id = util.secondary_term_id
 
     if config.venv ~= nil then
         local command = {
