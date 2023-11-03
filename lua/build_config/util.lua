@@ -45,7 +45,7 @@ M.execute_command = function(command, cwd, term_id, open)
 
 	command = table.concat(command, " ")
 
-    term.exec(command, term_id, size, cwd, direction, go_back, open)
+    term.exec(command, term_id, size, cwd, direction, "command", go_back, open)
 end
 
 M.concat = function(a, b)
