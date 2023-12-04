@@ -21,6 +21,7 @@ M.parse_config = function ()
     config.exe = util.value_or(opts["exe"], nil)
     config.args = util.value_or(opts["args"], {})
     config.before_script = util.value_or(opts["before_script"], nil)
+    config.env = util.value_or(opts["env"], {})
 
     return config
 end
@@ -32,6 +33,7 @@ M.compose_command = function (config)
     end
 
     local command = {}
+    util.concat(command, config.env)
 
     if config.before_script ~= nil then
         table.insert(command, config.before_script)
